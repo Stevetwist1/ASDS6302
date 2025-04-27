@@ -6,11 +6,13 @@ from dash.dependencies import Input, Output
 import plotly.express as px
 import requests 
 import io
+import os
 
 
 
 # Data Load
-DF_PATH = 'C:/Users/Steve/OneDrive/Desktop/Python/ASDS6302/2015_Street_Tree_Census_-_Tree_Data_20250409.csv'
+DF_PATH = os.path.join(os.path.dirname(__file__),
+                       '2015_Street_Tree_Census_-_Tree_Data_20250409.csv')
 df = pd.read_csv(DF_PATH).dropna(subset=['latitude', 'longitude'])
 
 
