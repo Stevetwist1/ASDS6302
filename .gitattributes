@@ -1,0 +1,2 @@
+.h5 filter=lfs diff=lfs merge=lfs -text
+2015_Street_Tree_Census_-_Tree_Data_20250409.csv filter=lfs diff=lfs merge=lfs -text

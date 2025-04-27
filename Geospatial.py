@@ -4,11 +4,19 @@ import dash_bootstrap_components as dbc
 from dash import dcc, html, dash_table
 from dash.dependencies import Input, Output
 import plotly.express as px
+import requests 
+import io
+
 
 
 # Data Load
-DF_PATH = 'C:/Users/Steve/OneDrive/Desktop/Python/2015_Street_Tree_Census_-_Tree_Data_20250409.csv'
+DF_PATH = 'C:/Users/Steve/OneDrive/Desktop/Python/ASDS6302/2015_Street_Tree_Census_-_Tree_Data_20250409.csv'
 df = pd.read_csv(DF_PATH).dropna(subset=['latitude', 'longitude'])
+
+
+
+# Drop any rows missing the coords
+df = df.dropna(subset=["latitude","longitude"])
 
 
 status_values = sorted(df['status'].dropna().unique())
@@ -58,7 +66,10 @@ app.title = 'NYC Street Tree Census'
 # Navbar
 navbar = dbc.Navbar(
     dbc.Container([
-        html.A('DATA SPARTANS', className='navbar-brand fw-bold fs-3 text-white', href='/'),
+        html.A(
+            html.Img(src="/assets/d_spart1.png",
+                height="100px",                      # adjust to fit
+                style={"margin-right": "10px"},), className='navbar-brand fw-bold fs-3 text-white', href='/'),
         dbc.NavbarToggler(id='navbar-toggler'),
         dbc.Collapse(
             dbc.Nav(
